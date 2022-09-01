@@ -17,6 +17,7 @@ namespace VoeAirlines.Controllers
 
         [HttpGet]
         public IActionResult ListarCancelamento()
+
         {
             var cancelamento = _cancelamentoService.ListarCancelamentos();
             return Ok(cancelamento);

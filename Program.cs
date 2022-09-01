@@ -1,5 +1,6 @@
 using VoeAirlines.Services;
 using VoeAirLines.Services;
+using VoeAirlinesSenai.Services;
 using VoeAirLinesSenai.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<VoeAirlinesContext>();
 builder.Services.AddTransient<AeronaveService>();
 builder.Services.AddTransient<ManutencaoService>();
 builder.Services.AddTransient<PilotoService>();
+builder.Services.AddTransient<VooService>();
 
 var app = builder.Build();
 

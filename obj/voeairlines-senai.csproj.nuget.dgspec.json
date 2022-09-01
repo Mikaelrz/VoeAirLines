@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aluno\\Desktop\\voeairlines-senai\\voeairlines-senai\\voeairlines-senai.csproj": {}
+    "C:\\Users\\Aluno\\Desktop\\VoeAirLinesSenai\\voeairlines-senai.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aluno\\Desktop\\voeairlines-senai\\voeairlines-senai\\voeairlines-senai.csproj": {
+    "C:\\Users\\Aluno\\Desktop\\VoeAirLinesSenai\\voeairlines-senai.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aluno\\Desktop\\voeairlines-senai\\voeairlines-senai\\voeairlines-senai.csproj",
+        "projectUniqueName": "C:\\Users\\Aluno\\Desktop\\VoeAirLinesSenai\\voeairlines-senai.csproj",
         "projectName": "voeairlines-senai",
-        "projectPath": "C:\\Users\\Aluno\\Desktop\\voeairlines-senai\\voeairlines-senai\\voeairlines-senai.csproj",
+        "projectPath": "C:\\Users\\Aluno\\Desktop\\VoeAirLinesSenai\\voeairlines-senai.csproj",
         "packagesPath": "C:\\Users\\Aluno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aluno\\Desktop\\voeairlines-senai\\voeairlines-senai\\obj\\",
+        "outputPath": "C:\\Users\\Aluno\\Desktop\\VoeAirLinesSenai\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aluno\\AppData\\Roaming\\NuGet\\NuGet.Config",
