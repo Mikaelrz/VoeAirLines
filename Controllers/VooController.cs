@@ -1,72 +1,67 @@
 using Microsoft.AspNetCore.Mvc;
-using VoeAirlinesSenai.Services;
+using VoeAirLinesSenai.Entities;
+using VoeAirlines.Services;
 using VoeAirlinesSenai.ViewModels;
 
-[Route("api/voos")]
-[ApiController]
-
-public class VooController : ControllerBase
+namespace VoeAirlines.Controllers
 {
-
-    private readonly VooService _vooService;
-
-    public VooController(VooService vooService)
+    [Route("api/voos")]
+    [ApiController]
+    public class VooController : ControllerBase
     {
-        _vooService = vooService;
-    }
+        private readonly VooService _vooService;
 
-    [HttpPost]
-
-    public IActionResult AdicionarVoo(AdicionarVooViewModel dados)
-    {
-        var voo = _vooService.AdicionarVoo(dados);
-        return Ok(voo);
-    }
-
-    [HttpGet]
-    public IActionResult ListarVoos()
-    {
-        return Ok(_vooService.ListarVoos());
-    }
-
-    [HttpGet("{id}")]
-    public IActionResult ListarVooPeloId(int id)
-    {
-        var voo = _vooService.ListarVooPeloId(id);
-        if (voo != null)
+        public VooController(VooService vooService)
         {
+            _vooService = vooService;
+        }
+
+
+        [HttpGet]
+        public IActionResult ListarVoos()
+        {
+            var voo = _vooService.ListarVoos();
             return Ok(voo);
         }
-        else
+
+        [HttpGet("{id:int}")]
+        public IActionResult ListarPilotosPorId(int id)
         {
+            var voo = _vooService.ListarPorId(id);
+            return Ok(voo);
+        }
+
+        [HttpPost]
+        public IActionResult AdicionarVoo(AdicionarVooViewModel dados)
+        {
+            var voo = _vooService.AdicionarVoo(dados);
+            return Created(nameof(AdicionarVoo), voo);
+        }
+
+        [HttpPut("{id:int}")]
+        public IActionResult AtualizarVoo(int id, AtualizarVooViewModel dados)
+        {
+            var voo = _vooService.AtualizarVoo(id, dados);
+            return Ok(voo);
+        }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult RemoverVoo(int id)
+        {
+            var voo = _vooService.RemoverVoo(id);
+            return Ok(voo);
+        }
+
+        [HttpGet("{id}/ficha")]
+        public IActionResult GerarFichaDoVoo(int id)
+        {
+            var conteudo = _vooService.GerarFichaDoVoo(id);
+            
+            
+            if (conteudo != null)
+                return File(conteudo, "application/pdf", "relatorio.pdf");
+
             return NotFound();
         }
     }
-
-    [HttpPut("{id}")]
-
-    public IActionResult AtualizarVoo(int id, AtualizarVooViewModel dados)
-    {
-        if (id != dados.Id)
-        {
-            return BadRequest("O Id informado na URL é diferente do Id ");
-        }
-        var voo = _vooService.AtualizarVoo(dados);
-        return Ok(voo);
-
-    }
-
-    [HttpDelete("{id}")]
-    public IActionResult ExcluirVoo(int id)
-    {
-        _vooService.ExluirVoo(id);
-        return NoContent();
-    }
-
-
-
-
-
-
-
 }
