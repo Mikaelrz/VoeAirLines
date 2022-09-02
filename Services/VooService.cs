@@ -10,14 +10,16 @@ namespace VoeAirlines.Services
 {
     public class VooService
     {
-        private readonly VoeAirlinesContext _context;
-        private readonly IConverter _converter;
+      private readonly VoeAirlinesContext _context;
+      private readonly IConverter _converter;
+      private readonly IHostEnvironment _hostEnvironment;
 
-        public VooService(VoeAirlinesContext context, IConverter converter)
-        {
-            _context = context;
-            _converter = converter;
-        }
+      public VooService(VoeAirlinesContext context, IConverter converter, IHostEnvironment hostEnvironment)
+      {
+        _context = context;
+        _converter = converter;
+        _hostEnvironment = hostEnvironment;
+      }
 
         public DetalhesVooViewModel AdicionarVoo(AdicionarVooViewModel dados)
         {
@@ -85,11 +87,14 @@ namespace VoeAirlines.Services
                                .Include(v => v.Cancelamento)
                                .FirstOrDefault(v => v.Id == id);
 
+            var path = _hostEnvironment.ContentRootPath + "\\banner-voeairlines.png";
+
             if (voo != null)
             {
                 var builder = new StringBuilder();
 
-                builder.Append($"<h1 style='text-align: center'>Ficha do Voo {voo.Id.ToString().PadLeft(10, '0')}</h1>")
+                builder.Append($"<img src=\"{path}\" width='1000' heigth='494'/>")
+                       .Append($"<h1 style='text-align: center'>Ficha do Voo {voo.Id.ToString().PadLeft(10, '0')}</h1>")
                        .Append($"<hr>")
                        .Append($"<p><b>ORIGEM:</b> {voo.Origem} (saída em {voo.DataHoraPartida:dd/MM/yyyy} às {voo.DataHoraPartida:hh:mm})</p>")
                        .Append($"<p><b>DESTINO:</b> {voo.Destino} (chegada em {voo.DataHoraChegada:dd/MM/yyyy} às {voo.DataHoraChegada:hh:mm})</p>")
